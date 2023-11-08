@@ -1,6 +1,5 @@
 import {Component} from 'react'
 import {Redirect} from 'react-router-dom'
-// FIX2: Cookies should be imported before using them
 import Cookies from 'js-cookie'
 
 import './index.css'
@@ -24,11 +23,11 @@ class LoginForm extends Component {
   onSubmitSuccess = jwtToken => {
     const {history} = this.props
 
-    // FIX3: The jwt_token should be stored in Cookies to authenticate the user
+  
     Cookies.set('jwt_token', jwtToken, {
       expires: 30,
     })
-    // FIX4: history.replace() should be used here
+  
     history.replace('/')
   }
 
@@ -43,7 +42,7 @@ class LoginForm extends Component {
     const url = 'https://apis.ccbp.in/login'
     const options = {
       method: 'POST',
-      // FIX5: The key to send data in the request is "body"
+    
       body: JSON.stringify(userDetails),
     }
     const response = await fetch(url, options)
@@ -116,7 +115,6 @@ class LoginForm extends Component {
           className="login-img"
           alt="website login"
         />
-        {/* FIX6: onSubmit event spelling */}
         <form className="form-container" onSubmit={this.submitForm}>
           <img
             src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-logo-img.png"
